@@ -14,10 +14,4 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Services\" />
-    <Folder Include="Models\Domains\" />
-    <Folder Include="Models\Repositories\" />
-  </ItemGroup>
-
 </Project>
