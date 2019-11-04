@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Bpms.Models.ViewModels.DailyAttendanceViewModel>
+
+@{
   ViewData["Title"] = "勤怠実績一覧表";
 }
 
@@ -29,15 +31,18 @@
       </tr>
     </thead>
     <tbody>
+      @foreach (var item in Model)
+      {
       <tr>
-        <td>1</td>
-        <td>金</td>
+        <td>@item.Day</td>
+        <td>@item.DayOfWeek</td>
         <td><button>取消</button></td>
-        <td>9:00</td>
-        <td>18:00</td>
-        <td>8:00</td>
-        <td></td>
+        <td>@item.StartTime</td>
+        <td>@item.EndTime</td>
+        <td>@item.ActualWorkHours</td>
+        <td>@item.Category</td>
       </tr>
+      }
     </tbody>
   </table>
 </div>
