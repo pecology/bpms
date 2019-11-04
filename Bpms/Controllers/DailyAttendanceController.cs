@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bpms.Controllers
 {
-    public class DailyAttendancesController : Controller
+    public class DailyAttendanceController : Controller
     {
-        public IActionResult Index()
+        public IActionResult List()
         {
             var items = new List<DailyAttendanceViewModel>
             {
