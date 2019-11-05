@@ -17,7 +17,12 @@
 </div>
 
 <div>
-  <p>2019年11月</p>
+  <p>
+    @Html.DropDownListFor(model => model.SelectedYear, Model.YearSelectListItems)
+    年
+    @Html.DropDownListFor(model => model.SelectedMonth, Model.MonthSelectListItems)
+    月
+  </p>
   <table class="table">
     <thead>
       <tr>
