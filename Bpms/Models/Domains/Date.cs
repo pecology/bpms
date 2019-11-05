@@ -27,5 +27,21 @@ namespace Bpms.Models.Domains
         {
             return one.Value >= other.Value;
         }
+
+        public static bool operator ==(Date one, Date other)
+        {
+            return one.Value == other.Value;
+        }
+
+        public static bool operator !=(Date one, Date other)
+        {
+            return one.Value != other.Value;
+        }
+
+        public Date Next()
+        {
+            var nextDate = Value.AddDays(1);
+            return new Date(nextDate.Year, nextDate.Month, nextDate.Day);
+        }
     }
 }

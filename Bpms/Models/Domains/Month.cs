@@ -29,5 +29,18 @@ namespace Bpms.Models.Domains
                 return new Date(Value.Value.Year, Value.Value.Month, lastDay);
             }
         }
+
+        public IEnumerable<Date> Dates
+        {
+            get
+            {
+                var date = BeginninDate;
+                while (date <= EndingDate)
+                {
+                    yield return date;
+                    date = date.Next();
+                }
+            }
+        }
     }
 }

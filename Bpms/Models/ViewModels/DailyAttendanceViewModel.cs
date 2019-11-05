@@ -8,29 +8,42 @@ namespace Bpms.Models.ViewModels
 {
     public class DailyAttendanceViewModel
     {
-        public string Day { get; set; }
-        public string DayOfWeek { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
-        public string ActualWorkHours { get; set; }
-        public string Category { get; set; }
+        public string Day { get; private set;}
+        public string DayOfWeek { get; private set;}
+        public string StartTime { get; private set;}
+        public string EndTime { get; private set;}
+        public string ActualWorkHours { get; private set;}
+        public string Category { get; private set;}
 
-        public DailyAttendanceViewModel(DailyAttendance attendance)
+        private DailyAttendanceViewModel()
         {
+        }
+
+        public static DailyAttendanceViewModel FromEntity(DailyAttendance attendance)
+        {
+            var item = new DailyAttendanceViewModel();
             if(attendance.Category == Domains.Category.Attendance)
             {
-                Day = attendance.Date.Day.ToString();
-                DayOfWeek = attendance.Date.Value.ToString("ddd");
-                StartTime = attendance.StartTime.value.ToString("HH:mm");
-                EndTime = attendance.EndTime.value.ToString("HH:mm");
-                ActualWorkHours = attendance.ActualWorkTimeSpan.ToString(@"hh\:mm");
+                item.Day = attendance.Date.Day.ToString();
+                item.DayOfWeek = attendance.Date.Value.ToString("ddd");
+                item.StartTime = attendance.StartTime.value.ToString("HH:mm");
+                item.EndTime = attendance.EndTime.value.ToString("HH:mm");
+                item.ActualWorkHours = attendance.ActualWorkTimeSpan.ToString(@"hh\:mm");
             } else
             {
-                Day = attendance.Date.Day.ToString();
-                DayOfWeek = attendance.Date.Value.ToString("ddd");
-                Category = attendance.Category.ToString();
+                item.Day = attendance.Date.Day.ToString();
+                item.DayOfWeek = attendance.Date.Value.ToString("ddd");
+                item.Category = attendance.Category.ToString();
             }
-            
+            return item;
+        }
+
+        public static DailyAttendanceViewModel Empty(Date date)
+        {
+            var emptyItem = new DailyAttendanceViewModel();
+            emptyItem.Day = date.Day.ToString();
+            emptyItem.DayOfWeek = date.Value.ToString("ddd");
+            return emptyItem;
         }
     }
 }
