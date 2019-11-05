@@ -11,30 +11,13 @@ namespace Bpms.Controllers
 {
     public class DailyAttendanceController : Controller
     {
-        public IActionResult List()
+        public IActionResult List(int year, int month, string userNo)
         {
             var service = new DailyAttendanceService();
             var dailyAttendances = service.Find("00001", 2019, 11);
-            var items = CreateMonthlyDailyAttendances(new Month(2019, 11), dailyAttendances);
-            return View(items);
-        }
-
-        private IEnumerable<DailyAttendanceViewModel> CreateMonthlyDailyAttendances(Month month, DailyAttendanceCollection dailyAttendances)
-        {
-            var monthlyDailyAttendances = month.Dates.Select(date =>
-            {
-                var exists = dailyAttendances.list.Any(d => d.Date == date);
-                if (exists)
-                {
-                    var dailyAttendance = dailyAttendances.list.First(d => d.Date == date);
-                    return DailyAttendanceViewModel.FromEntity(dailyAttendance);
-                }
-                else
-                {
-                    return DailyAttendanceViewModel.Empty(date);
-                }
-            });
-            return monthlyDailyAttendances;
+            var items = new OneMonthDailyAttendancesViewModel(new Month(2019, 11), dailyAttendances);
+            var viewModel = new DailyAttendanceListViewModel(2019, 11, items);
+            return View(viewModel);
         }
     }
 }

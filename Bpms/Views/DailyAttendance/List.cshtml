@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Bpms.Models.ViewModels.DailyAttendanceViewModel>
+﻿@model Bpms.Models.ViewModels.DailyAttendanceListViewModel
 
 @{
   ViewData["Title"] = "勤怠実績一覧表";
@@ -31,7 +31,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach (var item in Model)
+      @foreach (var item in Model.DailyAttendances)
       {
       <tr>
         <td>@item.Day</td>
