@@ -41,7 +41,7 @@
       @foreach (var item in Model.DailyAttendances)
       {
       <tr>
-        <td>@item.Day</td>
+        <td><a href="@item.EditPageUrl">@item.Day</a></td>
         <td>@item.DayOfWeek</td>
         <td><button>取消</button></td>
         <td>@item.StartTime</td>

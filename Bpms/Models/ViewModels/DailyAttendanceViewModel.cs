@@ -9,6 +9,7 @@ namespace Bpms.Models.ViewModels
     public class DailyAttendanceViewModel
     {
         public string Day { get; private set;}
+        public string EditPageUrl { get; private set; }
         public string DayOfWeek { get; private set;}
         public string StartTime { get; private set;}
         public string EndTime { get; private set;}
@@ -22,17 +23,16 @@ namespace Bpms.Models.ViewModels
         public static DailyAttendanceViewModel FromEntity(DailyAttendance attendance)
         {
             var item = new DailyAttendanceViewModel();
+            item.Day = attendance.Date.Day.ToString();
+            item.EditPageUrl = CreateEditPageUrl(attendance.Date);
+            item.DayOfWeek = attendance.Date.Value.ToString("ddd");
             if(attendance.Category == Domains.Category.Attendance)
             {
-                item.Day = attendance.Date.Day.ToString();
-                item.DayOfWeek = attendance.Date.Value.ToString("ddd");
                 item.StartTime = attendance.StartTime.value.ToString("HH:mm");
                 item.EndTime = attendance.EndTime.value.ToString("HH:mm");
                 item.ActualWorkHours = attendance.ActualWorkTimeSpan.ToString(@"hh\:mm");
             } else
             {
-                item.Day = attendance.Date.Day.ToString();
-                item.DayOfWeek = attendance.Date.Value.ToString("ddd");
                 item.Category = attendance.Category.ToString();
             }
             return item;
@@ -42,8 +42,14 @@ namespace Bpms.Models.ViewModels
         {
             var emptyItem = new DailyAttendanceViewModel();
             emptyItem.Day = date.Day.ToString();
+            emptyItem.EditPageUrl = CreateEditPageUrl(date);
             emptyItem.DayOfWeek = date.Value.ToString("ddd");
             return emptyItem;
+        }
+
+        private static string CreateEditPageUrl(Date date)
+        {
+            return $"./Edit?year={date.Year}&month={date.Month}&day={date.Day}";
         }
     }
 }

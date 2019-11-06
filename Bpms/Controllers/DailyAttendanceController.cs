@@ -23,5 +23,14 @@ namespace Bpms.Controllers
             var viewModel = new DailyAttendanceListViewModel(year, month, dailyAttendances);
             return View(viewModel);
         }
+
+        public IActionResult Edit(DailyAttendanceEditViewForm form)
+        {
+            var year = form.Year;
+            var month = form.Month;
+            var day = form.Day;
+
+            return View();
+        }
     }
 }
