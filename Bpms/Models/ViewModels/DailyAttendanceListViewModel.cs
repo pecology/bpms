@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Bpms.Models.Domains;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,13 @@ namespace Bpms.Models.ViewModels
         public IEnumerable<SelectListItem> MonthSelectListItems { get; }
         public IEnumerable<DailyAttendanceViewModel> DailyAttendances { get; }
         
-        public DailyAttendanceListViewModel(int selectedYear, int selectedMonth, IEnumerable<DailyAttendanceViewModel> dailyAttendances)
+        public DailyAttendanceListViewModel(int selectedYear, int selectedMonth, DailyAttendanceCollection dailyAttendances)
         {
             SelectedYear = selectedYear.ToString();
             SelectedMonth = selectedMonth.ToString();
             YearSelectListItems = BuildYearSelectListItems(selectedYear);
             MonthSelectListItems = BuildMonthSelectListItems(selectedMonth);
-            DailyAttendances = dailyAttendances;
-
+            DailyAttendances = new OneMonthDailyAttendancesViewModel(new Month(selectedYear, selectedMonth), dailyAttendances); ;
         }
 
         private IEnumerable<SelectListItem> BuildYearSelectListItems(int selectedYear)

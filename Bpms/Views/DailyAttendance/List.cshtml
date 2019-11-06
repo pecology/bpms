@@ -4,6 +4,8 @@
   ViewData["Title"] = "勤怠実績一覧表";
 }
 
+<script src="~/js/DailyAttendance/list.js"></script>
+
 <div class="text-center">
   <h1 class="display-4">勤怠実績一覧表</h1>
 </div>
@@ -18,9 +20,9 @@
 
 <div>
   <p>
-    @Html.DropDownListFor(model => model.SelectedYear, Model.YearSelectListItems)
+    @Html.DropDownListFor(model => model.SelectedYear, Model.YearSelectListItems, null, new { @id="year-select"})
     年
-    @Html.DropDownListFor(model => model.SelectedMonth, Model.MonthSelectListItems)
+    @Html.DropDownListFor(model => model.SelectedMonth, Model.MonthSelectListItems, null, new { @id="month-select"})
     月
   </p>
   <table class="table">
