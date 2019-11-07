@@ -1,0 +1,11 @@
+﻿.start-hour-text,
+.start-minute-text, 
+.end-hour-text,
+.end-minute-text {
+  width: 48px;
+}
+
+#detail-add-button-wrapper,
+#post-button-wrapper{
+  text-align:center;
+}

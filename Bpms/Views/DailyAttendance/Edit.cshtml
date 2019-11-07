@@ -5,6 +5,7 @@
 }
 
 <script src="~/js/DailyAttendance/edit.js"></script>
+<link rel="stylesheet" href="~/css/DailyAttendance/edit.css" />
 
 <div class="text-center">
   <h1 class="display-4">勤怠実績登録</h1>
@@ -16,4 +17,51 @@
     <li>社員ID:00001</li>
     <li>社員名:田中太郎</li>
   </ul>
+
+  <form action="./Edit" method="post">
+    <div class="form-group">
+      <span><b>勤怠区分</b></span>
+      <input type="checkbox" value="attendance" name="category" id="attendance">
+      <label for="attendance">出勤</label>
+      <input type="checkbox" value="abcence" name="category" id="abcence">
+      <label for="abcence">欠勤</label>
+      <input type="checkbox" value="paidVacation" name="category" id="paidVacation">
+      <label for="paidVacation">有給</label>
+    </div>
+    <div class="form-group">
+      <div id="detail-add-button-wrapper">
+        <button type="button" id="detail-add-button" class="btn">追加</button>
+      </div>
+
+      <table id="detail-table" class="table">
+        <thead>
+          <tr>
+            <th colspan="4">詳細</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>時間</th>
+            <th>作業内容</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="detail-no">1</td>
+            <td>
+              <input type="text" class="start-hour-text" value="9" />時
+              <input type="text" class="start-minute-text" value="00" />分～
+              <input type="text" class="end-hour-text" value="18" />時
+              <input type="text" class="end-minute-text" value="00" />分
+            </td>
+            <td><textarea type="text" class="description"></textarea></td>
+            <td><button class="detail-delete-button">削除</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="post-button-wrapper">
+      <button id="post-button-wrapper" class="btn">登録</button>
+    </div>
+  </form>
 </div>
