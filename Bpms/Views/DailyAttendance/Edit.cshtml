@@ -1,4 +1,4 @@
-﻿@model Bpms.Models.ViewModels.DailyAttendanceListViewModel
+﻿@model Bpms.Models.ViewModels.DailyAttendanceEditViewModel
 
 @{
   ViewData["Title"] = "勤怠実績登録";
@@ -18,7 +18,10 @@
     <li>社員名:田中太郎</li>
   </ul>
 
-  <form action="./Edit" method="post">
+  <form id="form" action="./Edit" method="post">
+    <input type="text" name="year" value="@Model.Year" />/
+    <input type="text" name="month" value="@Model.Month" /><br />
+    <input type="text" name="day" value="@Model.Day" />
     <div class="form-group">
       <span><b>勤怠区分</b></span>
       <input type="checkbox" value="attendance" name="category" id="attendance">
@@ -61,7 +64,7 @@
       </table>
     </div>
     <div id="post-button-wrapper">
-      <button id="post-button-wrapper" class="btn">登録</button>
+      <button type="button" id="post-button" class="btn">登録</button>
     </div>
   </form>
 </div>

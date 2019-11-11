@@ -24,7 +24,19 @@ namespace Bpms.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public IActionResult Edit(DailyAttendanceEditViewForm form)
+        {
+            var year = form.Year;
+            var month = form.Month;
+            var day = form.Day;
+            var viewModel = new DailyAttendanceEditViewModel(year, month, day);
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(DailyAttendanceEditPostViewForm form)
         {
             var year = form.Year;
             var month = form.Month;

@@ -46,7 +46,27 @@
     }
   });
 
-  //TODO:送信処理
+  document.querySelector("#post-button").onclick = () => {
+    const detailTrs = document.querySelectorAll("#detail-table > tbody > tr");
+    detailTrs.forEach((tr, i) => {
+      const startHourText = tr.querySelector(".start-hour-text");
+      startHourText.setAttribute("name", `details[${i}].startHour`);
+
+      const startMinuteText = tr.querySelector(".start-minute-text");
+      startMinuteText.setAttribute("name", `details[${i}].startMinute`);
+
+      const endHourText = tr.querySelector(".end-hour-text");
+      endHourText.setAttribute("name", `details[${i}].endHour`);
+
+      const endMinuteText = tr.querySelector(".end-minute-text");
+      endMinuteText.setAttribute("name", `details[${i}].endMinute`);
+
+      const descriptionText = tr.querySelector(".description");
+      descriptionText.setAttribute("name", `details[${i}].description`);
+    });
+
+    document.querySelector("#form").submit();
+  }
 }
 
 const getNextAll = element => {

@@ -1,7 +1,10 @@
 ﻿.start-hour-text,
 .start-minute-text, 
 .end-hour-text,
-.end-minute-text {
+.end-minute-text,
+.year,
+.month,
+.day {
   width: 48px;
 }
 
